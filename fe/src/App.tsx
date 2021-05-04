@@ -1,8 +1,16 @@
+import HeaderComponent from "components/Header";
+import DataTableComponent from "components/DataTable";
+import FooterComponent from "components/Footer";
+
 function App() {
   return (
-    <div>
-      HEllo
-    </div>
+    <>
+      <HeaderComponent />
+      <div className="container">
+        <DataTableComponent />
+      </div>
+      <FooterComponent />
+    </>
   );
 }
 
