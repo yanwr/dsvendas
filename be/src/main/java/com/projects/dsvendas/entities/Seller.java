@@ -13,7 +13,6 @@ import java.util.List;
 @Entity
 @Table(name = "tb_sellers")
 public class Seller {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

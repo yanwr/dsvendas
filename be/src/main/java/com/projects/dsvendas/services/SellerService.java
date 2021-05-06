@@ -1,8 +1,8 @@
 package com.projects.dsvendas.services;
 
-import com.projects.dsvendas.entities.Seller;
+import com.projects.dsvendas.entities.dtos.SellerDTO;
 import java.util.List;
 
 public interface SellerService {
-    List<Seller> findALl();
+    List<SellerDTO> findAll();
 }
