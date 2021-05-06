@@ -1,4 +1,4 @@
-package com.projects.dsvendas.models;
+package com.projects.dsvendas.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
