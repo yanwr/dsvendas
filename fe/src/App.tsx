@@ -1,15 +1,7 @@
-import HeaderComponent from "components/Header";
-import FooterComponent from "components/Footer";
 import Routes from "routes";
 
 function App() {
-  return (
-    <>
-      <HeaderComponent />
-      <Routes />
-      <FooterComponent />
-    </>
-  );
+  return (<Routes />);
 }
 
 export default App;
