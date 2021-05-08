@@ -1,24 +1,37 @@
+import { useEffect, useState } from 'react';
 import Chart from 'react-apexcharts';
+import { loadTotalSales } from 'services/SalesService';
+
+interface CharDataProps {
+  labels?: Array<string>;
+  series?: Array<number>;
+}
 
 export default function DonutChartComponent() {
+  const [chartData, setChartData] = useState<CharDataProps>({ labels: [], series: [] });
+
+  useEffect(() => {
+    loadTotalSales().then(res => {
+      setChartData({
+        labels: res?.map(x => x.seller.name),
+        series: res?.map(x => x.totalSales)
+      });
+    });
+  }, []);
+
   const options = {
     legend: {
       show: true
     }
   };
 
-  const mockData = {
-    series: [477138, 499928, 444867, 220426, 473088],
-    labels: ['Anakin', 'Barry Allen', 'Kal-El', 'Logan', 'Padmé']
-  };
-
   return (
     <Chart
       options={{
         ...options,
-        labels: mockData.labels
+        labels: chartData.labels
       }}
-      series={mockData.series}
+      series={chartData.series}
       type="donut"
       height="240"
     />
