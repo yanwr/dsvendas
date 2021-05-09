@@ -1,7 +1,8 @@
 import Axios from 'axios';
+import CONSTANTS from '../../CONSTANTS';
 
 const api = Axios.create({
-  baseURL: "http://localhost:8080"
+  baseURL: CONSTANTS.BASE_API_URL
 });
 
 export default api;
