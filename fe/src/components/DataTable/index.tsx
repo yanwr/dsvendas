@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { format } from "date-fns";
 import SalePageable from "models/SalePageable";
 import { loadAllSalesPageable } from "services/SalesService";
+import PaginationComponent from "components/Pagination";
 
 export default function DataTableComponent() {
   const [pageProps, setPageProps] = useState<SalePageable>({
@@ -11,12 +12,13 @@ export default function DataTableComponent() {
     totalElements: 0,
     totalPages: 0
   });
+  const [pageNumber, handleOnPageChange] = useState(0);
 
   useEffect(() => {
-    loadAllSalesPageable(pageProps).then(data => {
+    loadAllSalesPageable(pageNumber).then(data => {
       data && setPageProps(data);
     });
-  }, []);
+  }, [pageNumber]);
 
   function formatLocalDate(date: string, pattern: string) {
     const newDate = new Date(date);
@@ -38,21 +40,24 @@ export default function DataTableComponent() {
   }
 
   return (
-    <div className="table-responsive">
-      <table className="table table-striped table-sm">
-        <thead>
-          <tr>
-            <th>Data</th>
-            <th>Vendedor</th>
-            <th>Clientes visitados</th>
-            <th>Negócios fechados</th>
-            <th>Valor</th>
-          </tr>
-        </thead>
-        <tbody>
-          {renderDataSale()}
-        </tbody>
-      </table>
-    </div>
+    <>
+      <PaginationComponent page={pageProps} onPageChange={handleOnPageChange} />
+      <div className="table-responsive">
+        <table className="table table-striped table-sm">
+          <thead>
+            <tr>
+              <th>Data</th>
+              <th>Vendedor</th>
+              <th>Clientes visitados</th>
+              <th>Negócios fechados</th>
+              <th>Valor</th>
+            </tr>
+          </thead>
+          <tbody>
+            {renderDataSale()}
+          </tbody>
+        </table>
+      </div>
+    </>
   );
 }

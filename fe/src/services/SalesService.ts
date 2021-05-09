@@ -3,11 +3,11 @@ import TotalSale from "models/TotalSale";
 import SuccessSale from "models/SuccessSale";
 import SalePageable from "models/SalePageable";
 
-export async function loadAllSalesPageable(pageProps: SalePageable) {
+export async function loadAllSalesPageable(pageNumber: number) {
   try {
     const response = await api.get<SalePageable>("/sales", {
       params: {
-        page: 0,
+        page: pageNumber,
         size: 20,
         sort: "date,desc"
       }
